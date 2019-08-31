@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from fixture.session import SessionHelper
+from fixture.project import ProjectHelper
 
 
 class Application:
@@ -16,6 +17,7 @@ class Application:
             raise ValueError("Unrecognozed browser %s" % browser)
         self.wd.implicitly_wait(5)
         self.session = SessionHelper(self)
+        self.project = ProjectHelper(self)
         self.base_url = base_url
 
     def change_value_by_name(self, name, text):
@@ -42,10 +44,13 @@ class Application:
         wd = self.wd
         wd.get(self.base_url)
 
-    def return_to_homepage(self):
+    def return_to_manage_projects(self):
         wd = self.wd
-        if not wd.current_url.endswith("/addressbook/"):
-            wd.find_element_by_xpath("//a[contains(text(),'home')]").click()
+        wd.find_element_by_link_text("Manage").click()
+        wd.find_element_by_link_text("Manage Projects").click()
+
+        #if not wd.current_url.endswith("/addressbook/"):
+         #   wd.find_element_by_xpath("//a[contains(text(),'home')]").click()
 
     def is_valid(self):
         try:

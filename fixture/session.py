@@ -40,10 +40,10 @@ class SessionHelper:
 
     def is_logged_in(self):
         wd = self.app.wd
-        return len(wd.find_elements_by_xpath("//form[@name = 'logout']/a")) > 0
+        return len(wd.find_elements_by_xpath("//a[contains(text(), 'Logout')]")) > 0
 
     def is_logged_in_as(self, username):
         wd = self.app.wd
-        return wd.find_element_by_css_selector("td.login-info-left span").text == username
+        return wd.find_element_by_xpath("//td[@class='login-info-left']//span[1]").text == username
 
 
