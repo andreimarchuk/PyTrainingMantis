@@ -10,6 +10,6 @@ def random_string(prefix, maxlen):
 
 testdata = [Project(projectname=random_string("Project_", 10), status="development",
                     viewstatus="public", description=random_string("description_", 20))
-    for i in range(5)
+    for i in range(1)
 ]
 
